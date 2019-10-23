@@ -64,7 +64,7 @@ CREATE TABLE solicita_locacao(
 
 DROP TABLE IF EXISTS valor;
 CREATE TABLE valor(
-  IDVALOR INT(11) PRIMARY KEY AUTO_INCREMENT,                               /*------------------------------------------------------------------------------------------------------ 23/10 -- TIREI O UNDERLINE DA CHAVE PRIMARIA SEGUE UM PADRAO PORRA */
+  ID_VALOR INT(11) PRIMARY KEY AUTO_INCREMENT,
   VALOR INT(11) NOT NULL,
   DATA_SOLICITACAO VARCHAR(50) NOT NULL,
   NOME_TIPO VARCHAR(50) NOT NULL,
@@ -73,6 +73,7 @@ CREATE TABLE valor(
 );
 
 /* ------ 23/10 -- INICIO DAS DECLARACOES DAS CHAVES ESTRANGEIRAS --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
 ALTER TABLE funcionario	
 ADD CONSTRAINT FK_FUNC_DEP
 FOREIGN KEY (ID_DEP)
@@ -114,10 +115,10 @@ REFERENCES valor(IDVALOR);
 INSERT INTO agencia_viagem VALUES (1,'ViagemEmpresarial','15.014.547/022196');
 INSERT INTO departamento (IDDEP, NOMEDEP, ORCAMENTO, CENTRO_CUSTO) VALUES (1,'diretoria',15000,1054600),(2,'ti',15000,1054830),(3,'sac',15000,1054800),(4,'sustentabilidade',15000,1054800);
 INSERT INTO funcionario VALUES (1,350534,'christian brandao','christian.lasa@lasa.com.br','#lasa2021','16530244700',2,'ADM','ADMINISTRADOR','Masculino'),(2,155623,'eduarda','eduarda.nunes12@gmail.com','123456','15612529724',1,'diretora','USUARIO','Feminino'),(3,564738,'jonathan neves alencar','jonathannalencar@gmail.com','senha123','04145050467',2,'chefao da porra toda','ADMINSITRADOR','Masculino'),(4,274652,'luis felipe da silva souza','luisp1927@hotmail.com','22304106','27645376654',1,'ESTAGIARIO','USUARIO','Masculino');
+INSERT INTO valor VALUES (17,560,'17/10/2019 09:38:06','LOCACAO',3,'PENDENTE'),(16,1525,'17/10/2019 09:36:36','AEREO',3,'NAO'),(3,1700,'17/10/2019 01:03:52','AEREO',1,'NAO'),(4,240,'17/10/2019 01:47:04','LOCACAO',1,'NAO'),(5,660,'17/10/2019 01:47:33','HOSPEDAGEM',1,'NAO'),(6,1525,'17/10/2019 01:47:56','AEREO',1,'NAO'),(7,720,'17/10/2019 01:48:31','LOCACAO',1,'NAO'),(8,0,'17/10/2019 01:49:06','HOSPEDAGEM',1,'NAO'),(9,0,'17/10/2019 01:49:09','HOSPEDAGEM',1,'NAO'),(10,0,'17/10/2019 01:49:11','HOSPEDAGEM',1,'NAO'),(11,0,'17/10/2019 01:49:12','HOSPEDAGEM',1,'NAO'),(12,0,'17/10/2019 01:49:14','HOSPEDAGEM',1,'NAO'),(13,0,'17/10/2019 01:49:16','HOSPEDAGEM',1,'NAO'),(14,0,'17/10/2019 01:49:18','HOSPEDAGEM',1,'NAO'),(15,0,'17/10/2019 01:49:20','HOSPEDAGEM',1,'NAO'),(18,560,'17/10/2019 09:39:15','LOCACAO',3,'PENDENTE'),(19,1700,'17/10/2019 09:41:08','AEREO',3,'PENDENTE'),(20,40260,'17/10/2019 10:26:26','HOSPEDAGEM',4,'PENDENTE');
 INSERT INTO solicita_aerea VALUES (1,'10/11/2019','15/11/2019','rio de janeiro','salvador',1,3),(2,'10/05/2019','20/05/2019','rio de janeiro','chile',1,6),(3,'10/05/2019','11/05/2019','rio de janeiro','chile',1,16),(4,'18/10/2019','30/10/2019','rio de janeiro','chile',3,16),(5,'10/05/2019','20/05/2019','rio de janeiro','salvador',3,19);
 INSERT INTO solicita_hospedagem VALUES (1,'10/10/2019','15/10/2019','rio de janeiro',1,2),(2,'10/05/2019','16/05/2019','ilha grande',1,5),(3,'10/01/1000','10/01/1000','teste',1,8),(4,'10/01/1000','10/01/1000','teste',1,9),(5,'10/01/1000','10/01/1000','teste',1,10),(6,'10/01/1000','10/01/1000','teste',1,11),(7,'10/01/1000','10/01/1000','teste',1,12),(8,'10/01/1000','10/01/1000','teste',1,13),(9,'10/01/1000','10/01/1000','teste',1,14),(10,'10/01/1000','10/01/1000','teste',1,15),(11,'17/10/2019','17/10/2020','rio de janeiro',4,20);
 INSERT INTO solicita_locacao VALUES (1,'18/10/2019','25/10/2019','rio de janeiro',3,18);
-INSERT INTO valor VALUES (17,560,'17/10/2019 09:38:06','LOCACAO',3,'PENDENTE'),(16,1525,'17/10/2019 09:36:36','AEREO',3,'NAO'),(3,1700,'17/10/2019 01:03:52','AEREO',1,'NAO'),(4,240,'17/10/2019 01:47:04','LOCACAO',1,'NAO'),(5,660,'17/10/2019 01:47:33','HOSPEDAGEM',1,'NAO'),(6,1525,'17/10/2019 01:47:56','AEREO',1,'NAO'),(7,720,'17/10/2019 01:48:31','LOCACAO',1,'NAO'),(8,0,'17/10/2019 01:49:06','HOSPEDAGEM',1,'NAO'),(9,0,'17/10/2019 01:49:09','HOSPEDAGEM',1,'NAO'),(10,0,'17/10/2019 01:49:11','HOSPEDAGEM',1,'NAO'),(11,0,'17/10/2019 01:49:12','HOSPEDAGEM',1,'NAO'),(12,0,'17/10/2019 01:49:14','HOSPEDAGEM',1,'NAO'),(13,0,'17/10/2019 01:49:16','HOSPEDAGEM',1,'NAO'),(14,0,'17/10/2019 01:49:18','HOSPEDAGEM',1,'NAO'),(15,0,'17/10/2019 01:49:20','HOSPEDAGEM',1,'NAO'),(18,560,'17/10/2019 09:39:15','LOCACAO',3,'PENDENTE'),(19,1700,'17/10/2019 09:41:08','AEREO',3,'PENDENTE'),(20,40260,'17/10/2019 10:26:26','HOSPEDAGEM',4,'PENDENTE');
 
 DELIMITER ;;
 
@@ -128,7 +129,7 @@ BEGIN
         UPDATE FUNCIONARIO SET SENHA = SENHANOVA WHERE IDFUNC = IDFUNC1;
 	END IF;
 END ;;
-CREATE PROCEDURE TABLEAPROVACAOGER(IDDEP1 INT)								/*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 23/10-- MUDEI DE "TABELAPROVACAO" PARA "TABELAPROVACAOGER" POR QUESTAO DE ORGANIZACAO */				
+CREATE PROCEDURE TABLEAPROVACAO(IDDEP1 INT)
 BEGIN
 	SELECT ID_VALOR, F.NOMEFUNC, NOME_TIPO, VALOR FROM VALOR 
     JOIN FUNCIONARIO AS F 
