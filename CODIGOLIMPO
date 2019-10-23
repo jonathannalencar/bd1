@@ -145,5 +145,26 @@ BEGIN
 	WHERE APROVADO = 'PENDENTE';
 END ;;
 
+CREATE PROCEDURE SOLICTPENDENTES()
+BEGIN
+	SELECT COUNT(*) FROM VALOR
+	WHERE APROVADO = 'PENDENTE';
+END ;;
+
+/* ------- 23/10 PROCEDURES NOVAS ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+CREATE PROCEDURE TOTALGASTOPORDEP()                 /* ------- 23/10 -- TOTAL GASTO POR DEPARTAMENTO ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+BEGIN	
+	SELECT ID_DEP, SUM(VALOR) FROM valor
+	JOIN funcionario
+	ON ID_VALOR_FUNC = IDFUNC
+	GROUP BY ID_DEP;
+END ;;
+
+CREATE PROCEDURE TOTALGASTOGERAL()                 /* ------- 23/10 -- TOTAL GASTO NO GERAL ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+BEGIN	
+	SELECT SUM(VALOR) FROM valor;
+END ;;
+
 DELIMITER ;
 
