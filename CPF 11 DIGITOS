@@ -1,0 +1,23 @@
+CREATE TRIGGER TR_TAM_CPF BEFORE INSERT ON funcionario
+FOR EACH ROW 
+BEGIN
+   DECLARE numLength INT;
+   SET numLength = (SELECT LENGTH(NEW.CPF));
+
+   IF (numLength != 11) THEN
+     SET NEW.CPF = 1/0;
+   END IF;
+
+END;;
+
+Como foi utilizado o Banco de Dados MySQL ao longo de todo o trabalho e como ele não suporta
+adicionar uma simples constraint que faz a checagem da quantidade de dígitos, como o exemplo
+a seguir:
+
+ALTER TABLE funcionario
+ADD CONSTRAINT TAMANHO_CPF
+CHECK (CHAR_LENGTH(CPF) = 11);
+
+Foi necessário a criação de uma trigger que fizesse a mesma função, a trigger insere NULL no
+campo CPF caso o usuário não tenha inserido um CPF com 11 dígitos, o que causa um erro proposital
+quando for inserir o cadastro do novo funcionário.
