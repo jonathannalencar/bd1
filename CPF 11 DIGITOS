@@ -2,7 +2,7 @@ CREATE TRIGGER TR_TAM_CPF BEFORE INSERT ON funcionario
 FOR EACH ROW 
 BEGIN
    DECLARE numLength INT;
-   SET numLength = (SELECT LENGTH(NEW.CPF));
+   SET numLength = (SELECT CHAR_LENGTH(NEW.CPF));
 
    IF (numLength != 11) THEN
      SET NEW.CPF = 1/0;
