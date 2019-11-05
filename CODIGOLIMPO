@@ -97,17 +97,17 @@ REFERENCES funcionario(IDFUNC);
 ALTER TABLE solicita_aerea
 ADD CONSTRAINT FK_AEREA_VAL
 FOREIGN KEY (ID_SOLICITA_VALOR)
-REFERENCES valor(IDVALOR);
+REFERENCES valor(ID_VALOR);
 
 ALTER TABLE solicita_hospedagem
 ADD CONSTRAINT FK_HOSPE_VAL
 FOREIGN KEY (ID_SOLICITA_VALOR)
-REFERENCES valor(IDVALOR);
+REFERENCES valor(ID_VALOR);
 
 ALTER TABLE solicita_locacao
 ADD CONSTRAINT FK_LOCAC_VAL
 FOREIGN KEY (ID_SOLICITA_VALOR)
-REFERENCES valor(IDVALOR);
+REFERENCES valor(ID_VALOR);
 
 /* ------ 23/10 -- FIM DAS DECLARACOES DAS CHAVES ESTRANGEIRAS --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
@@ -167,5 +167,28 @@ BEGIN
 	SELECT SUM(VALOR) FROM valor;
 END ;;
 
+CREATE TRIGGER TR_TAM_CPF
+BEFORE INSERT ON funcionario
+FOR EACH ROW 
+BEGIN
+   DECLARE numLength INT;
+   SET numLength = (SELECT LENGTH(NEW.CPF));
+
+   IF (numLength != 11) THEN
+     SET NEW.CPF = 1/0;
+   END IF;
+
+END;;
+
+CREATE TRIGGER TR_ALF_SENHA
+BEFORE INSERT ON funcionario
+FOR EACH ROW
+BEGIN
+	IF (NEW.SENHA NOT LIKE '%[0-9]%' AND NEW.SENHA NOT LIKE '%[a-zA-Z]%') THEN
+		SET NEW.SENHA = 1/0;
+	END IF;
+END;;
+
 DELIMITER ;
+
 
